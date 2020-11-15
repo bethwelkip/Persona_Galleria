@@ -1,3 +1,65 @@
 from django.db import models
-
+from cloudinary.models import  CloudinaryField
+import datetime as dt
 # Create your models here.
+
+class Editor(models.Model):
+    first_name = models.CharField(max_length = 30)
+    last_name = models.CharField(max_length = 30)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.first_name
+
+    def save_editor(self):
+        self.save()
+
+class Category(models.Model):
+    category = models.CharField(max_length = 30)
+
+    def __str__(self):
+        return self.category
+class Location(models.Model):
+    location = models.CharField(max_length = 30)
+
+    def __str__(self):
+        return self.location
+
+class Image(models.Model):
+    name = models.CharField(max_length = 30)
+    description = models.TextField()
+    location = models.ForeignKey(Location, on_delete=models.DO_NOTHING)
+    categories = models.ManyToManyField(Category)
+    image = CloudinaryField('image', null = True)
+
+    def save_image(self):
+        self.save()
+    
+    def delete_image(self):
+        self.delete()
+    def update_image(self):
+        self.image = self.image ###
+    
+    @classmethod
+    def get_image_by_id(cls, id):
+        pass
+        # cls.objects.
+    
+    @classmethod
+    def search_image(cls, category):
+        images = cls.objects.filter(category__icontains = category)
+        return images
+    
+    @classmethod
+    def filter_by_location(cls, location):
+        images = cls.objects.filter(location = location)
+        return images
+    @classmethod
+    def pictures(cls):  
+        picture = cls.objects.all()
+        pics = [pic.image for pic in picture if pic.image]
+        return pics
+        
+
+
+    
