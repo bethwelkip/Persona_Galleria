@@ -4,8 +4,8 @@ from django.conf import settings
 # from django.conf.urls.static import static
 
 urlpatterns = [
-url('^$', views.profile, name = 'profile'),
-# url('^(\d{4}-\d{2}-\d{2})/$', views.past_days_news, name = 'pastNews'),
+url('^$', views.index, name = 'profile'),
+url('^location$', views.location, name = 'location'),
 url(r'^search/', views.search_results, name='search_results'),
 # url(r'^article/(\d+)',views.article,name ='article')
 
