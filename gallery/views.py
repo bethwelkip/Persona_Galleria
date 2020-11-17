@@ -21,7 +21,7 @@ def photo(request, photo_id):
 def index(request):
     # if not Image.pictures():
     #     initialize()
-    initialize()
+    # initialize()
     img = Category.objects.filter(category="nature").first()
     print(img.category)
     #displays all images
