@@ -4,7 +4,7 @@
  [Bethwel Kiplimo](https://github.com/bethwelkip)
 
 
-* Link to live site
+## Link to live site
 https://persona-galleria.herokuapp.com
 
 ## Description
