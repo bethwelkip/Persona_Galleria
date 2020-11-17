@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% url 'index' %}
+{% block content %}
+<div class="row">
+    {% load cloudinary %}
+    {% for pic in pics %}
+    <div class="col-lg-3 col-md-4 col-xs-12 col-sm-12">
+        <div class="jumbotron">
+            <a data-toggle="modal" href="photo/{{pic.id}}.html">
+                <!--target="_blank" -->
+                <img src="{{pic.image.url}}" alt="Image" height="100%" width="100%" style="max-width:100%">
+            </a>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}

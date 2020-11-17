@@ -2,9 +2,13 @@ from django.shortcuts import render, Http404
 from .models import Image, Category
 from .filldb import initialize
 # Create your views here.
-def profile(request):
+def modal(request):
     #displays by category
-    return render(request, 'category.html')
+    img = Category.objects.filter(category="nature").first()
+    print(img.category)
+    #displays all images
+    pics = Image.objects.all() #pictures()
+    return render(request, 'modal.html', {"pics": pics})
 
 def photo(request, photo_id):
     try:
