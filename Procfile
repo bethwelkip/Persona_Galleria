@@ -1,0 +1,1 @@
+web: gunicorn galley.wsgi --log-file -

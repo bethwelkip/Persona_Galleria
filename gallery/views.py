@@ -1,5 +1,5 @@
 from django.shortcuts import render, Http404
-from .models import Image
+from .models import Image, Category
 from .filldb import initialize
 # Create your views here.
 def profile(request):
@@ -17,6 +17,8 @@ def photo(request, photo_id):
 def index(request):
     if not Image.pictures():
         initialize()
+    img = Category.objects.filter(category="nature").first()
+    print(img.category)
     #displays all images
     pics = Image.objects.all() #pictures()
     return render(request, 'index.html', {"pics": pics})
