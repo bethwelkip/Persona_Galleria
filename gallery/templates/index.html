@@ -1,1 +1,55 @@
 {% extends 'base.html' %}
+{% url 'index' %}
+{% block content %}
+<div class="row">
+    {% load cloudinary %}
+    {% for pic in pics %}
+    <div class="col-lg-3 col-md-4 col-xs-12 col-sm-12">
+        <div class="jumbotron">
+            <div class="modal view overlay">
+                <a data-toggle="modal" href="#myModal">
+                    <!--target="_blank" -->
+                    <img src="{{pic.image.url}}" alt="Image" height="100%" width="100%">
+                </a>
+            </div>
+        </div>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-body">
+        <img src="{{pic.image.url}}" class="img-responsive" alt="image">
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm">Description: {{pic.description}}</div>
+            <div class="col-sm">Location: {{pic.location}}</div>
+            <div class="col-sm">Category: {{pic.categories.category}}</div>
+        </div>
+    </div>
+
+
+
+
+    {% endfor %}
+</div>
+{% endblock %}

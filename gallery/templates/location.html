@@ -1,1 +1,56 @@
 {% extends 'base.html' %}
+{% url 'location' %}
+{% load cloudinary %}
+{%block content%}
+<h1>Princeton Photos </h1>
+<div class="row" style="background-color:green">
+    {% for pic in pics.0 %}
+
+    <div class="col-lg-3 col-md-4 col-xs-12 col-sm-12">
+        <div class='card' style="margin:5%">
+            <img src="{{pic.url}}" alt="Image" style="max-width:100%; height: auto;">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<h1>Nakuru Photos </h1>
+<div class="row" style="background-color:rgb(134, 143, 53)">
+    {% for pic in pics.1 %}
+    <div class="col-lg-3 col-md-4 col-xs-12 col-sm-12">
+        <div class='card' style="margin:5%">
+            <img src="{{pic.url}}" alt="Image" style="max-width:100%">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<h1>Wawa Photos </h1>
+<div class="row" style="background-color:burlywood">
+    {% for pic in pics.2 %}
+    <div class="col-lg-3 col-md-4 col-xs-12 col-sm-12">
+        <div class='card' style="margin:5%">
+            <img src="{{pic.url}}" alt="Image" style="max-width:100%">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<h1>Nairobi Photos </h1>
+<div class="row" style="background-color:rgb(160, 150, 126)">
+    {% for pic in pics.3 %}
+    <div class="col-lg-3 col-md-4 col-xs-12 col-sm-12">
+        <div class='card' style="margin:5%">
+            <img src="{{pic.url}}" alt="Image" style="max-width:100%">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<h1>Beach Photos </h1>
+<div class="row" style="background-color:lightblue">
+    {% for pic in pics.4 %}
+    <div class="col-lg-3 col-md-4 col-xs-12 col-sm-12">
+        <div class='card' style="margin:5%">
+            <img src="{{pic.url}}" alt="Image" style="width: initial;max-width:100%">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

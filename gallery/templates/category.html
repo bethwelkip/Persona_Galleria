@@ -1,1 +1,30 @@
 {% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <h1 class="text-center">Name : {{photo.name}}</h1>
+    </div>
+
+    <div class="row">
+        <p> Description : {{photo.description}}</p>
+    </div>
+
+    <div class="row">
+        <p> This photo was posted under the following categories:
+            {% for cat in categories %}
+        <div style="color: aquamarine;margin-left: 2%; margin-right: 2%;">{{ cat.category }}</div>
+        {% endfor %}
+        in
+        <div style="color: aquamarine; margin-left: 2%;">{{photo.location}}</div>
+        </p>
+    </div>
+
+    <div class="row">
+        <img src="{{photo.image.url}}" class="img-responsive" alt="">
+    </div>
+
+</div>
+
+{% endblock %}
