@@ -5,7 +5,7 @@ from django.conf import settings
 
 urlpatterns = [
 url('^$', views.index, name = 'index'),
-url('^location$', views.location, name = 'location'),
+url('^location', views.location, name = 'location'),
 url(r'^search/', views.search_results, name='search_results'),
 url(r'^photo/(\d+)',views.photo,name ='photo'), 
 url(r'^modal/',views.modal,name ='modal')
