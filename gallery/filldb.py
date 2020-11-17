@@ -5,7 +5,7 @@ import cloudinary, cloudinary.api,cloudinary.uploader
 import os
 def initialize():
     cwd = os.getcwd()
-    image = cloudinary.uploader.upload_resource(f'{cwd}/gallery/assets/memes/0.JPG')
+    # image = cloudinary.uploader.upload_resource(f'https://github.com/bethwelkip/Persona_Galleria/tree/master/gallery/assets/memes/0.JPG')
     #name, description, location,categories, image
     locations = ["Princeton","Nakuru", "Wawa", "Nairobi", "Beach"]
     categories = ["memes", "nature", "bethwel", "friends"]
