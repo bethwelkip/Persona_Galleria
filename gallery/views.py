@@ -32,11 +32,6 @@ def search_results(request):
         searched_images = Image.search_image(search_term)
         message = f"{search_term}"
         return render(request, 'search.html',{"message":message,"images": searched_images})
-    elif 'location' in request.GET and request.GET["location"]:
-        search_term = request.GET.get("location")
-        searched_images = Image.search_image(search_term)
-        message = f"{search_term}"
-        return render(request, 'search.html',{"message":message,"images": searched_images})
 
     else:
         message = "You haven't searched for any term \n"
