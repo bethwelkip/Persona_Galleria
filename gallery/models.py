@@ -8,11 +8,26 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category
+    def save_category(self):
+        self.save()
+    
+    def delete_category(self):
+        self.delete()
+    def update_category(self, new_category):
+        self.update(category = new_category)
+
 class Location(models.Model):
     location = models.CharField(max_length = 30)
 
     def __str__(self):
         return self.location
+    def save_location(self):
+        self.save()
+    
+    def delete_location(self):
+        self.delete()
+    def update_location(self, new_location):
+        self.update(location =new_location)
 
 class Image(models.Model):
     name = models.CharField(max_length = 30)
@@ -26,8 +41,8 @@ class Image(models.Model):
     
     def delete_image(self):
         self.delete()
-    def update_image(self):
-        self.image = self.image ###
+    def update_image(self, new_name):
+        self.update(name = new_name)
     
     @classmethod
     def get_image_by_id(cls, id):
