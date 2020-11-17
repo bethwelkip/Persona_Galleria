@@ -19,8 +19,9 @@ def photo(request, photo_id):
     return render(request, 'category.html', {"photo": photo, "categories": category})
 
 def index(request):
-    if not Image.pictures():
-        initialize()
+    # if not Image.pictures():
+    #     initialize()
+    initialize()
     img = Category.objects.filter(category="nature").first()
     print(img.category)
     #displays all images
