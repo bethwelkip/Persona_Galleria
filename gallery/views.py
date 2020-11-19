@@ -16,13 +16,16 @@ def modal(request):
         # subprocess.run("pbcopy", universal_newlines=True, input=url)
         if sys.platform == 'win32' or sys.platform == 'cygwin':
             subprocess.Popen(['clip'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
+            messages.info(request,"Image link has been copied to clipboard")
         else:
             try:
                 subprocess.Popen(['pbcopy'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
+                messages.info(request,"Image link has been copied to clipboard")
             except:
-                pass
+                messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
+                
 
-        messages.info(request,"Image link has been copied to clipboard")
+        # messages.info(request,"Image link has been copied to clipboard")
         return redirect('index')
     return render(request, 'index.html', {"messages": message})
 
