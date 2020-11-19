@@ -4,12 +4,16 @@ from .filldb import initialize
 from django.contrib import messages
 import clipboard
 import pyperclip
+import subprocess 
+
+subprocess.run("pbcopy", universal_newlines=True, input=data)
 # Create your views here.
 def modal(request):
     # messages = None
     if 'copy' in request.GET and request.GET["copy"]:
         url = request.GET.get('copy')
         pyperclip.copy(url)
+        subprocess.run("pbcopy", universal_newlines=True, input=url)
         # message = "Image link has been copied to clipboard"
         messages.info(request,"Image link has been copied to clipboard")
         return redirect('index')
