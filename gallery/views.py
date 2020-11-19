@@ -5,6 +5,7 @@ from django.contrib import messages
 import clipboard
 import pyperclip
 import subprocess 
+import sys
 
 # Create your views here.
 def modal(request):
@@ -12,8 +13,15 @@ def modal(request):
     if 'copy' in request.GET and request.GET["copy"]:
         url = request.GET.get('copy')
         # pyperclip.copy(url)
-        subprocess.run("pbcopy", universal_newlines=True, input=url)
-        # message = "Image link has been copied to clipboard"
+        # subprocess.run("pbcopy", universal_newlines=True, input=url)
+        if sys.platform == 'win32' or sys.platform == 'cygwin':
+            subprocess.Popen(['clip'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
+        else:
+            try:
+                subprocess.Popen(['pbcopy'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
+            except:
+                pass
+
         messages.info(request,"Image link has been copied to clipboard")
         return redirect('index')
     return render(request, 'index.html', {"messages": message})
