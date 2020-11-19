@@ -6,14 +6,12 @@ import clipboard
 import pyperclip
 import subprocess 
 import sys
+from tkinter import Tk
 
 # Create your views here.
 def modal(request):
-    # messages = None
     if 'copy' in request.GET and request.GET["copy"]:
         url = request.GET.get('copy')
-        # pyperclip.copy(url)
-        # subprocess.run("pbcopy", universal_newlines=True, input=url)
         if sys.platform == 'win32' or sys.platform == 'cygwin':
             subprocess.Popen(['clip'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
             messages.info(request,"Image link has been copied to clipboard")
@@ -26,7 +24,13 @@ def modal(request):
                     clipboard.copy(url)
                     pyperclip.copy(url)
                 except:
-                    messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
+                    try:
+                        r = Tk()
+                        r.withdraw()
+                        r.clipboard_clear()
+                        r.clipboard_append(url)
+                    except:
+                        messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
                 
 
         # messages.info(request,"Image link has been copied to clipboard")
