@@ -6,7 +6,6 @@ import clipboard
 import pyperclip
 import subprocess 
 
-subprocess.run("pbcopy", universal_newlines=True, input=data)
 # Create your views here.
 def modal(request):
     # messages = None
