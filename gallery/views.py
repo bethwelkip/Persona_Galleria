@@ -6,7 +6,7 @@ import clipboard
 import pyperclip
 import subprocess 
 import sys
-from tkinter import Tk
+import  tkinter as Tk
 
 # Create your views here.
 def modal(request):
@@ -25,7 +25,7 @@ def modal(request):
                     pyperclip.copy(url)
                 except:
                     try:
-                        r = Tk()
+                        r = Tk.Tk()
                         r.withdraw()
                         r.clipboard_clear()
                         r.clipboard_append(url)
