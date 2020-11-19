@@ -3,12 +3,13 @@ from .models import Image, Category
 from .filldb import initialize
 from django.contrib import messages
 import clipboard
+import pyperclip
 # Create your views here.
 def modal(request):
     # messages = None
     if 'copy' in request.GET and request.GET["copy"]:
         url = request.GET.get('copy')
-        clipboard.copy(url)
+        pyperclip.copy(url)
         # message = "Image link has been copied to clipboard"
         messages.info(request,"Image link has been copied to clipboard")
         return redirect('index')
