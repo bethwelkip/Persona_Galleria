@@ -1,14 +1,18 @@
-from django.shortcuts import render, Http404
+from django.shortcuts import render, Http404, redirect
 from .models import Image, Category
 from .filldb import initialize
+from django.contrib import messages
+import clipboard
 # Create your views here.
 def modal(request):
-    #displays by category
-    img = Category.objects.filter(category="nature").first()
-    print(img.category)
-    #displays all images
-    pics = Image.objects.all() #pictures()
-    return render(request, 'modal.html', {"pics": pics})
+    # messages = None
+    if 'copy' in request.GET and request.GET["copy"]:
+        url = request.GET.get('copy')
+        clipboard.copy(url)
+        # message = "Image link has been copied to clipboard"
+        messages.info(request,"Image link has been copied to clipboard")
+        return redirect('index')
+    return render(request, 'index.html', {"messages": message})
 
 def photo(request, photo_id):
     try:
@@ -22,8 +26,9 @@ def index(request):
     # if not Image.pictures():
     #     initialize()
     # initialize()
+    context = {}
     img = Category.objects.filter(category="nature").first()
-    print(img.category)
+    # print(img.category)
     #displays all images
     pics = Image.objects.all() #pictures()
     return render(request, 'index.html', {"pics": pics})
