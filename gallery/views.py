@@ -24,13 +24,7 @@ def modal(request):
                     clipboard.copy(url)
                     pyperclip.copy(url)
                 except:
-                    try:
-                        r = Tk.Tk()
-                        r.withdraw()
-                        r.clipboard_clear()
-                        r.clipboard_append(url)
-                    except:
-                        messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
+                    messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
                 
 
         # messages.info(request,"Image link has been copied to clipboard")
