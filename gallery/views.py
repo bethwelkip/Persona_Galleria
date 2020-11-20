@@ -6,7 +6,6 @@ import clipboard
 import pyperclip
 import subprocess 
 import sys
-import  tkinter as Tk
 
 # Create your views here.
 def modal(request):
