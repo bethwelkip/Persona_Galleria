@@ -19,11 +19,11 @@ def modal(request):
                 subprocess.Popen(['pbcopy'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
                 messages.info(request,"Image link has been copied to clipboard")
             except:
-                try:
-                    clipboard.copy(url)
-                    pyperclip.copy(url)
-                except:
-                    messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
+                # try:
+                #     clipboard.copy(url)
+                #     pyperclip.copy(url)
+                # except:
+                messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
                 
 
         # messages.info(request,"Image link has been copied to clipboard")
