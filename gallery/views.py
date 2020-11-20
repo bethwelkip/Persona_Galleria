@@ -11,19 +11,20 @@ import sys
 def modal(request):
     if 'copy' in request.GET and request.GET["copy"]:
         url = request.GET.get('copy')
-        if sys.platform == 'win32' or sys.platform == 'cygwin':
-            subprocess.Popen(['clip'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
-            messages.info(request,"Image link has been copied to clipboard")
-        else:
-            try:
-                subprocess.Popen(['pbcopy'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
-                messages.info(request,"Image link has been copied to clipboard")
-            except:
+        clipboard.copy(url)
+        # if sys.platform == 'win32' or sys.platform == 'cygwin':
+        #     subprocess.Popen(['clip'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
+        #     messages.info(request,"Image link has been copied to clipboard")
+        # else:
+        #     try:
+        #         subprocess.Popen(['pbcopy'],encoding='utf8', stdin=subprocess.PIPE).communicate(url)
+        #         messages.info(request,"Image link has been copied to clipboard")
+        #     except:
                 # try:
                 #     clipboard.copy(url)
                 #     pyperclip.copy(url)
                 # except:
-                messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
+                # messages.info(request,"Cannot access copy/paste mechanism on your device. To copy link, please run the web app locally.  Sorry :(")
                 
 
         # messages.info(request,"Image link has been copied to clipboard")
